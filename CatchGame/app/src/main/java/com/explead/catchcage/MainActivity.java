@@ -34,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         fragment = new StartFragment();
         transaction.replace(R.id.fragmentContainer, fragment);
-        transaction.addToBackStack(null);
         transaction.commit();
     }
 
@@ -42,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         fragment = new GameFragment();
         transaction.replace(R.id.fragmentContainer, fragment);
+        transaction.addToBackStack(null);
         transaction.commit();
     }
 

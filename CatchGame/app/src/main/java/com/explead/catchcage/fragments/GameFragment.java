@@ -5,9 +5,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.explead.catchcage.R;
 import com.explead.catchcage.UtilsGame;
@@ -41,8 +43,12 @@ public class GameFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     //if(UtilsGame.getStatusMove() == UtilsGame.I_MOVE) {
+                    if(layout.getNumberCircle() < 6) {
+                        utils.addCircle(layout.getNumberCircle(), layout.getNumber(), utils.getStatusMove());
                         setCircleMove(layout.getNumber());
                         utils.changeStatusMove();
+                        utils.checkWon(utils.getField());
+                    }
                     //}
                 }
             });
@@ -65,10 +71,8 @@ public class GameFragment extends Fragment {
     }
 
     public void setCircle(int m, ImageView view) {
-        if(stackLayout[m].getNumberCircle() < 7) {
-            stackLayout[m].getLayout().addView(view, 0);
-            stackLayout[m].addNumberCircle();
-        }
+        stackLayout[m].getLayout().addView(view, 0);
+        stackLayout[m].addNumberCircle();
     }
 
 
